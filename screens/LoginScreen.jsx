@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import { View, Text, TextInput, Image, Pressable, StyleSheet } from 'react-native';
+import { View, Text, TextInput, Pressable, KeyboardAvoidingView, StyleSheet } from 'react-native';
 
 export const LoginScreen = ({ userRegistered }) => {
   const [email, setEmail] = useState('');
@@ -13,17 +13,16 @@ export const LoginScreen = ({ userRegistered }) => {
 
   function showPassword() {
     passwordInput.current.focus();
-    setIsPasswordHidden(state => (state.isPasswordHidden = !isPasswordHidden));
+    setIsPasswordHidden(state => !state);
   }
 
   return (
-    <>
-      <Image
-        style={styles.background}
-        source={require('../assets/img/background-image-min.jpg')}
-      />
-      <View style={styles.registrationForm}>
-        <View style={styles.container}>
+    <KeyboardAvoidingView
+      style={styles.container}
+      behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
+      keyboardVerticalOffset={-210}>
+      <View style={styles.loginForm}>
+        <View style={styles.inner}>
           <Text style={styles.title}>Увійти</Text>
           <TextInput
             style={[styles.input, isEmailFocused && styles.inputFocused]}
@@ -66,26 +65,18 @@ export const LoginScreen = ({ userRegistered }) => {
           </Pressable>
         </View>
       </View>
-    </>
+    </KeyboardAvoidingView>
   );
 };
 
 const styles = StyleSheet.create({
-  background: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    width: '100%',
-    height: '100%',
-    resizeMode: 'cover',
+  container: {
+    flex: 1,
+    justifyContent: 'flex-end',
   },
-
-  registrationForm: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
+  
+  loginForm: {
     width: '100%',
-
     paddingTop: 32,
     paddingBottom: 95,
     borderTopLeftRadius: 25,
@@ -93,7 +84,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
   },
 
-  container: {
+  inner: {
     paddingLeft: 16,
     paddingRight: 16,
   },
@@ -144,10 +135,8 @@ const styles = StyleSheet.create({
   },
 
   btnLogin: {
-    paddingTop: 16,
-    paddingBottom: 16,
-    paddingLeft: 32,
-    paddingRight: 32,
+    paddingVertical: 16,
+    paddingHorizontal: 32,
     backgroundColor: '#FF6C00',
     borderRadius: 100,
   },
@@ -161,10 +150,8 @@ const styles = StyleSheet.create({
   },
 
   btnRegister: {
-    paddingTop: 16,
-    paddingBottom: 16,
-    paddingLeft: 32,
-    paddingRight: 32,
+    paddingVertical: 16,
+    paddingHorizontal: 32,
   },
 
   btnRegisterLabel: {

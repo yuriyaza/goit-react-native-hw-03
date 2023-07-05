@@ -1,10 +1,9 @@
 import { useState } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, Image, StyleSheet } from 'react-native';
 import { useFonts } from 'expo-font';
 import { StatusBar } from 'expo-status-bar';
 import { RegistrationScreen } from './screens/RegistrationScreen';
 import { LoginScreen } from './screens/LoginScreen';
-import { Test } from './screens/Test';
 
 export default function App() {
   const [isUserRegistered, setIsUserRegistered] = useState(false);
@@ -18,10 +17,13 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      {/* {!isUserRegistered && <RegistrationScreen userRegistered={setIsUserRegistered} />} */}
-      {/* {isUserRegistered && <LoginScreen userRegistered={setIsUserRegistered} />} */}
-      {/* <StatusBar style='auto' /> */}
-      <Test/>
+      <Image
+        style={styles.background}
+        source={require('./assets/img/background-image-min.jpg')}
+      />
+      {!isUserRegistered && <RegistrationScreen userRegistered={setIsUserRegistered} />}
+      {isUserRegistered && <LoginScreen userRegistered={setIsUserRegistered} />}
+      <StatusBar style='auto' />
     </View>
   );
 }
@@ -29,7 +31,15 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // justifyContent: 'flex-end',
-    backgroundColor: '#808080',
+    backgroundColor: '#ffffff',
+  },
+
+  background: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    resizeMode: 'cover',
   },
 });
