@@ -16,11 +16,17 @@ export const LoginScreen = ({ userRegistered }) => {
     setIsPasswordHidden(state => !state);
   }
 
+  function showLoginData() {
+    console.log('E-mail:', email);
+    console.log('Password:', password);
+  }
+
   return (
     <KeyboardAvoidingView
       style={styles.container}
       behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
       keyboardVerticalOffset={-210}>
+      
       <View style={styles.loginForm}>
         <View style={styles.inner}>
           <Text style={styles.title}>Увійти</Text>
@@ -52,7 +58,9 @@ export const LoginScreen = ({ userRegistered }) => {
               <Text style={styles.btnPasswordShowLabel}>Показати</Text>
             </Pressable>
           </View>
-          <Pressable style={styles.btnLogin}>
+          <Pressable
+            style={styles.btnLogin}
+            onPress={showLoginData}>
             <Text style={styles.btnLoginLabel}>Увійти</Text>
           </Pressable>
           <Pressable
@@ -65,6 +73,7 @@ export const LoginScreen = ({ userRegistered }) => {
           </Pressable>
         </View>
       </View>
+
     </KeyboardAvoidingView>
   );
 };
@@ -74,7 +83,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-end',
   },
-  
+
   loginForm: {
     width: '100%',
     paddingTop: 32,

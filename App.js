@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { View, Image, StyleSheet } from 'react-native';
+import { View, Image, Keyboard, TouchableWithoutFeedback, StyleSheet } from 'react-native';
 import { useFonts } from 'expo-font';
 import { StatusBar } from 'expo-status-bar';
 import { RegistrationScreen } from './screens/RegistrationScreen';
@@ -16,6 +16,8 @@ export default function App() {
   if (!fontsLoaded) { return null; }
 
   return (
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+
     <View style={styles.container}>
       <Image
         style={styles.background}
@@ -24,7 +26,8 @@ export default function App() {
       {!isUserRegistered && <RegistrationScreen userRegistered={setIsUserRegistered} />}
       {isUserRegistered && <LoginScreen userRegistered={setIsUserRegistered} />}
       <StatusBar style='auto' />
-    </View>
+      </View>
+      </TouchableWithoutFeedback>
   );
 }
 

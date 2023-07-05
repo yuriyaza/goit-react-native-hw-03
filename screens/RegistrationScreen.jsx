@@ -18,11 +18,18 @@ export const RegistrationScreen = ({ userRegistered }) => {
     setIsPasswordHidden(state => !state);
   }
 
+  function showRegisterData() {
+    console.log('Login:', login);
+    console.log('E-mail:', email);
+    console.log('Password:', password);
+  }
+
   return (
     <KeyboardAvoidingView
       style={styles.container}
       behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
       keyboardVerticalOffset={-140}>
+      
       <View style={styles.registrationForm}>
         <View style={styles.userPhoto}>
           <Pressable style={styles.btnAddPhoto}>
@@ -71,7 +78,9 @@ export const RegistrationScreen = ({ userRegistered }) => {
               <Text style={styles.btnPasswordShowLabel}>Показати</Text>
             </Pressable>
           </View>
-          <Pressable style={styles.btnRegister}>
+          <Pressable
+            style={styles.btnRegister}
+            onPress={showRegisterData}>
             <Text style={styles.btnRegisterLabel}>Зареєструватися</Text>
           </Pressable>
           <Pressable
@@ -81,6 +90,7 @@ export const RegistrationScreen = ({ userRegistered }) => {
           </Pressable>
         </View>
       </View>
+
     </KeyboardAvoidingView>
   );
 };
