@@ -4,6 +4,7 @@ import { useFonts } from 'expo-font';
 import { StatusBar } from 'expo-status-bar';
 import { RegistrationScreen } from './screens/RegistrationScreen';
 import { LoginScreen } from './screens/LoginScreen';
+import { Test } from './screens/Test';
 
 export default function App() {
   const [isUserRegistered, setIsUserRegistered] = useState(false);
@@ -17,9 +18,10 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      {!isUserRegistered && <RegistrationScreen userRegistered={setIsUserRegistered} />}
-      {isUserRegistered && <LoginScreen userRegistered={setIsUserRegistered} />}
-      <StatusBar style='auto' />
+      {/* {!isUserRegistered && <RegistrationScreen userRegistered={setIsUserRegistered} />} */}
+      {/* {isUserRegistered && <LoginScreen userRegistered={setIsUserRegistered} />} */}
+      {/* <StatusBar style='auto' /> */}
+      <Test/>
     </View>
   );
 }
@@ -27,8 +29,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#ffffff',
+    // justifyContent: 'flex-end',
+    backgroundColor: '#808080',
   },
 });
