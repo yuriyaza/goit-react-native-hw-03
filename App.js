@@ -16,18 +16,17 @@ export default function App() {
   if (!fontsLoaded) { return null; }
 
   return (
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-
-    <View style={styles.container}>
-      <Image
-        style={styles.background}
-        source={require('./assets/img/background-image-min.jpg')}
-      />
-      {!isUserRegistered && <RegistrationScreen userRegistered={setIsUserRegistered} />}
-      {isUserRegistered && <LoginScreen userRegistered={setIsUserRegistered} />}
-      <StatusBar style='auto' />
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <View style={styles.container}>
+        <Image
+          style={styles.background}
+          source={require('./assets/img/background-image-min.jpg')}
+        />
+        {!isUserRegistered && <RegistrationScreen userRegistered={setIsUserRegistered} />}
+        {isUserRegistered && <LoginScreen userRegistered={setIsUserRegistered} />}
+        <StatusBar style='auto' />
       </View>
-      </TouchableWithoutFeedback>
+    </TouchableWithoutFeedback>
   );
 }
 
